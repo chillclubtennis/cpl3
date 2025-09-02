@@ -23,6 +23,13 @@ h1 {
   letter-spacing: 1px;
 }
 
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: #375a7f;
+}
+
 .section-title {
   font-size: 1.15rem;
   color: #375a7f;
@@ -59,6 +66,33 @@ li {
   border-radius: 6px;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95rem;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: 600;
+}
+
+table caption {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  text-align: left;
+  color: #375a7f;
+}
+
 @media (max-width: 600px) {
   .container {
     padding: 16px 6px;
@@ -68,6 +102,9 @@ li {
   }
   .section-title {
     font-size: 1rem;
+  }
+  table {
+    font-size: 0.85rem;
   }
 }
 
