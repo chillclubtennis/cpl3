@@ -186,3 +186,7 @@ table caption {
   font-weight: bold;
   color: #009879;
 }
+
+.highlight-red {
+  background-color: red;
+}
