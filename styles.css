@@ -87,3 +87,27 @@ li {
 .link-section a:hover {
   border-bottom: 2px solid #3898ec;
 }
+
+.registration-section.standout {
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.link-section.left-align {
+  text-align: left;
+  margin: 10px 0;
+}
+
+.link-section.left-align a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.link-section.left-align a:hover {
+  text-decoration: underline;
+}
