@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CPL 3.0 — Court Layout Examples (EP placements)</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #f6f8fb;
+      color: #0f1724;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(15,23,36,0.06);
+      padding: 18px;
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    h1 { margin: 0 0 12px 0; font-size: 20px; }
+    p.lead { margin: 0 0 14px 0; color: #334155; }
+    .court {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .half {
+      border: 1px solid #e6eef8;
+      padding: 10px;
+      border-radius: 8px;
+      background: #fbfdff;
+    }
+    .half h3 { margin: 0 0 8px 0; font-size: 16px; color:#0b63c6;}
+    table { width: 100%; border-collapse: collapse; }
+    td, th { padding: 8px 6px; text-align: left; font-size: 14px; }
+    tr + tr td { border-top: 1px dashed #e6eef8; }
+    .line-label { width: 52px; font-weight: 700; color:#0f1724; }
+    .player { display:inline-block; padding:4px 8px; border-radius:999px; font-size:13px; margin-right:6px; }
+    .star { background:#fff7ed; color:#9a5a03; border:1px solid #ffe7c6; }
+    .ep { background:#f0fdf4; color:#065f46; border:1px solid #cff6d9; }
+    .pair { display:flex; gap:6px; align-items:center; }
+    .ok { color:#065f46; font-weight:700; }
+    .bad { color:#b91c1c; font-weight:700; }
+    .legend { margin-top:12px; font-size:13px; color:#334155; }
+    .example-title { margin-bottom:8px; font-size:15px; font-weight:700; }
+    .note { margin-top:10px; color:#475569; font-size:13px; }
+    .container { display:flex; gap:12px; flex-direction:column; align-items:flex-start; }
+    @media (max-width:640px){
+      .court { grid-template-columns: 1fr; }
+      .card { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>CPL 3.0 — Court Layout Examples (EP placements)</h1>
+    <p class="lead">Three visual examples showing how Emerging Players (🌱 EP) and Stars (⭐) can be placed across First Half and Second Half. Minimum rule: <strong>at least 2 EP lines per match day</strong>.</p>
+
+    <!-- Example 1 -->
+    <div class="container">
+      <div class="example-title">Example 1 — Minimum (2 EPs, lines covered)</div>
+      <div class="court">
+        <div class="half">
+          <h3>First Half</h3>
+          <table>
+            <tr><td class="line-label">S1</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">S2</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D1</td><td class="pair"><span class="player ep">🌱 EP</span><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D2</td><td class="pair"><span class="player star">⭐ Star</span><span class="player star">⭐ Star</span></td></tr>
+          </table>
+        </div>
+
+        <div class="half">
+          <h3>Second Half</h3>
+          <table>
+            <tr><td class="line-label">S3</td><td><span class="player ep">🌱 EP</span></td></tr>
+            <tr><td class="line-label">S4</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D3</td><td class="pair"><span class="player star">⭐ Star</span><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D4</td><td class="pair"><span class="player star">⭐ Star</span><span class="player star">⭐ Star</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="note"><span class="ok">✅ Rule met:</span> 2 EP players appear across 2 EP lines (D1 and S3).</div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid #eef3fb;margin:14px 0;">
+
+    <!-- Example 2 -->
+    <div class="container">
+      <div class="example-title">Example 2 — Two EP doubles lines (3 EPs total)</div>
+      <div class="court">
+        <div class="half">
+          <h3>First Half</h3>
+          <table>
+            <tr><td class="line-label">S1</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">S2</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D1</td><td class="pair"><span class="player ep">🌱 EP</span><span class="player ep">🌱 EP</span></td></tr>
+            <tr><td class="line-label">D2</td><td class="pair"><span class="player ep">🌱 EP</span><span class="player star">⭐ Star</span></td></tr>
+          </table>
+        </div>
+
+        <div class="half">
+          <h3>Second Half</h3>
+          <table>
+            <tr><td class="line-label">S3</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">S4</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D3</td><td class="pair"><span class="player star">⭐ Star</span><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D4</td><td class="pair"><span class="player star">⭐ Star</span><span class="player star">⭐ Star</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="note"><span class="ok">✅ Rule met:</span> 3 EPs across two doubles lines (D1 & D2).</div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid #eef3fb;margin:14px 0;">
+
+    <!-- Example 3 -->
+    <div class="container">
+      <div class="example-title">Example 3 — EP spread (4 EPs, extra opportunities)</div>
+      <div class="court">
+        <div class="half">
+          <h3>First Half</h3>
+          <table>
+            <tr><td class="line-label">S1</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">S2</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D1</td><td class="pair"><span class="player ep">🌱 EP</span><span class="player ep">🌱 EP</span></td></tr>
+            <tr><td class="line-label">D2</td><td class="pair"><span class="player star">⭐ Star</span><span class="player star">⭐ Star</span></td></tr>
+          </table>
+        </div>
+
+        <div class="half">
+          <h3>Second Half</h3>
+          <table>
+            <tr><td class="line-label">S3</td><td><span class="player ep">🌱 EP</span></td></tr>
+            <tr><td class="line-label">S4</td><td><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D3</td><td class="pair"><span class="player ep">🌱 EP</span><span class="player star">⭐ Star</span></td></tr>
+            <tr><td class="line-label">D4</td><td class="pair"><span class="player star">⭐ Star</span><span class="player star">⭐ Star</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="note"><span class="ok">✅ Rule met (and exceeded):</span> 4 EPs used across 3 lines — great for development opportunities.</div>
+    </div>
+
+    <div class="card" style="margin-top:12px;">
+      <div class="legend">
+        <strong>Legend</strong><br>
+        <span class="player ep">🌱 EP</span> = Emerging Player (counts toward EP-line requirement)<br>
+        <span class="player star">⭐ Star</span> = Non-EP player (regular roster)<br>
+        <div style="margin-top:8px; font-size:13px;">
+          <strong>Quick rules:</strong>
+          <ul style="margin:6px 0 0 18px; padding:0; color:#334155;">
+            <li>Minimum <strong>2 EP lines</strong> per match day (each line may have 1 or 2 EPs).</li>
+            <li>If no EP is available for a required line → that line becomes a <strong>bye</strong>.</li>
+            <li>Captains should prioritize giving genuine opportunities to EPs, not just check the box.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
