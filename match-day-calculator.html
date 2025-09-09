@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Match Day Win Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .container { max-width: 1000px; margin: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+    th { background-color: #f4f4f4; }
+    .results { margin-top: 20px; }
+    input { width: 50px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Match Day Win Calculator</h1>
+    <p>Enter scores for 8 lines (4 Singles and 4 Doubles). Each match is best of 3 sets.</p>
+
+    <form id="scoreForm">
+      <div>
+        <label for="team1Name">Team 1 Name:</label>
+        <input type="text" id="team1Name" placeholder="Enter Team 1 Name" required>
+        <label for="team2Name">Team 2 Name:</label>
+        <input type="text" id="team2Name" placeholder="Enter Team 2 Name" required>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Line</th>
+            <th>Player Name</th>
+            <th>Set 1</th>
+            <th>Set 2</th>
+            <th>Set 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Singles -->
+          <tr>
+            <td rowspan="2">S1</td>
+            <td><input type="text" class="player-name" placeholder="Player 1"></td>
+            <td><input type="number" class="team1-set1" value="0"></td>
+            <td><input type="number" class="team1-set2" value="0"></td>
+            <td><input type="number" class="team1-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="player-name" placeholder="Player 2"></td>
+            <td><input type="number" class="team2-set1" value="0"></td>
+            <td><input type="number" class="team2-set2" value="0"></td>
+            <td><input type="number" class="team2-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td rowspan="2">S2</td>
+            <td><input type="text" class="player-name" placeholder="Player 1"></td>
+            <td><input type="number" class="team1-set1" value="0"></td>
+            <td><input type="number" class="team1-set2" value="0"></td>
+            <td><input type="number" class="team1-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="player-name" placeholder="Player 2"></td>
+            <td><input type="number" class="team2-set1" value="0"></td>
+            <td><input type="number" class="team2-set2" value="0"></td>
+            <td><input type="number" class="team2-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td rowspan="2">S3</td>
+            <td><input type="text" class="player-name" placeholder="Player 1"></td>
+            <td><input type="number" class="team1-set1" value="0"></td>
+            <td><input type="number" class="team1-set2" value="0"></td>
+            <td><input type="number" class="team1-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="player-name" placeholder="Player 2"></td>
+            <td><input type="number" class="team2-set1" value="0"></td>
+            <td><input type="number" class="team2-set2" value="0"></td>
+            <td><input type="number" class="team2-set3" value="0"></td>
+          </tr>
+          <!-- Doubles -->
+          <tr>
+            <td rowspan="2">D1</td>
+            <td><input type="text" class="player-name" placeholder="Player 1"></td>
+            <td><input type="number" class="team1-set1" value="0"></td>
+            <td><input type="number" class="team1-set2" value="0"></td>
+            <td><input type="number" class="team1-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="player-name" placeholder="Player 2"></td>
+            <td><input type="number" class="team2-set1" value="0"></td>
+            <td><input type="number" class="team2-set2" value="0"></td>
+            <td><input type="number" class="team2-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td rowspan="2">D2</td>
+            <td><input type="text" class="player-name" placeholder="Player 1"></td>
+            <td><input type="number" class="team1-set1" value="0"></td>
+            <td><input type="number" class="team1-set2" value="0"></td>
+            <td><input type="number" class="team1-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="player-name" placeholder="Player 2"></td>
+            <td><input type="number" class="team2-set1" value="0"></td>
+            <td><input type="number" class="team2-set2" value="0"></td>
+            <td><input type="number" class="team2-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td rowspan="2">D3</td>
+            <td><input type="text" class="player-name" placeholder="Player 1"></td>
+            <td><input type="number" class="team1-set1" value="0"></td>
+            <td><input type="number" class="team1-set2" value="0"></td>
+            <td><input type="number" class="team1-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="player-name" placeholder="Player 2"></td>
+            <td><input type="number" class="team2-set1" value="0"></td>
+            <td><input type="number" class="team2-set2" value="0"></td>
+            <td><input type="number" class="team2-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td rowspan="2">D4</td>
+            <td><input type="text" class="player-name" placeholder="Player 1"></td>
+            <td><input type="number" class="team1-set1" value="0"></td>
+            <td><input type="number" class="team1-set2" value="0"></td>
+            <td><input type="number" class="team1-set3" value="0"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="player-name" placeholder="Player 2"></td>
+            <td><input type="number" class="team2-set1" value="0"></td>
+            <td><input type="number" class="team2-set2" value="0"></td>
+            <td><input type="number" class="team2-set3" value="0"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" onclick="calculateResults()">Calculate Results</button>
+    </form>
+
+    <div class="results">
+      <h2>Results</h2>
+      <p id="lineWins"></p>
+      <p id="setWins"></p>
+      <p id="gameWins"></p>
+    </div>
+  </div>
+
+  <script>
+    function calculateResults() {
+      const team1Name = document.getElementById('team1Name').value || 'Team 1';
+      const team2Name = document.getElementById('team2Name').value || 'Team 2';
+
+      const rows = document.querySelectorAll('tbody tr');
+      let team1LinesWon = 0, team2LinesWon = 0;
+      let team1SetsWon = 0, team2SetsWon = 0;
+      let team1GamesWon = 0, team2GamesWon = 0;
+
+      for (let i = 0; i < rows.length; i += 2) {
+        const team1SetScores = [
+          parseInt(rows[i].querySelector('.team1-set1').value),
+          parseInt(rows[i].querySelector('.team1-set2').value),
+          parseInt(rows[i].querySelector('.team1-set3').value)
+        ];
+        const team2SetScores = [
+          parseInt(rows[i + 1].querySelector('.team2-set1').value),
+          parseInt(rows[i + 1].querySelector('.team2-set2').value),
+          parseInt(rows[i + 1].querySelector('.team2-set3').value)
+        ];
+
+        let team1Sets = 0, team2Sets = 0;
+
+        for (let j = 0; j < 3; j++) {
+          if (team1SetScores[j] > team2SetScores[j]) {
+            team1Sets++;
+            team1GamesWon += team1SetScores[j];
+            team2GamesWon += team2SetScores[j];
+          } else if (team2SetScores[j] > team1SetScores[j]) {
+            team2Sets++;
+            team1GamesWon += team1SetScores[j];
+            team2GamesWon += team2SetScores[j];
+          }
+        }
+
+        team1SetsWon += team1Sets;
+        team2SetsWon += team2Sets;
+
+        if (team1Sets > team2Sets) {
+          team1LinesWon++;
+        } else if (team2Sets > team1Sets) {
+          team2LinesWon++;
+        }
+      }
+
+      document.getElementById('lineWins').textContent = `Lines Won: ${team1Name} - ${team1LinesWon}, ${team2Name} - ${team2LinesWon}`;
+      document.getElementById('setWins').textContent = `Sets Won: ${team1Name} - ${team1SetsWon}, ${team2Name} - ${team2SetsWon}`;
+      document.getElementById('gameWins').textContent = `Games Won: ${team1Name} - ${team1GamesWon}, ${team2Name} - ${team2GamesWon}`;
+    }
+  </script>
+</body>
+</html>
