@@ -12,13 +12,22 @@
     th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
     th { background-color: #f4f4f4; }
     .results { margin-top: 20px; }
-    input { width: 50px; }
+    input { width: 100%; }
+    .error {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+    .error-message {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Match Day Win Calculator</h1>
-    <p>Enter scores for 8 lines (4 Singles and 4 Doubles). Each match is best of 3 sets.</p>
+    <p>Enter player names and scores for 8 lines (4 Singles and 4 Doubles). Use "/" as a delimiter for player names and set scores.</p>
 
     <form id="scoreForm">
       <div>
@@ -32,105 +41,70 @@
         <thead>
           <tr>
             <th>Line</th>
-            <th>Player Name</th>
-            <th>Set 1</th>
-            <th>Set 2</th>
-            <th>Set 3</th>
+            <th>Player Names (Team 1 / Team 2)</th>
+            <th>Set 1 (Team 1 / Team 2)</th>
+            <th>Set 2 (Team 1 / Team 2)</th>
+            <th>Set 3 (Team 1 / Team 2)</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Singles -->
+          <!-- Example for S1 -->
           <tr>
-            <td rowspan="2">S1</td>
-            <td><input type="text" class="player-name" placeholder="Player 1"></td>
-            <td><input type="number" class="team1-set1" value="0"></td>
-            <td><input type="number" class="team1-set2" value="0"></td>
-            <td><input type="number" class="team1-set3" value="0"></td>
+            <td>S1</td>
+            <td><input type="text" class="player-names" placeholder="player1/player2"></td>
+            <td><input type="text" class="set1-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set2-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set3-scores" placeholder="0/0"></td>
+          </tr>
+          <!-- Repeat for other lines -->
+          <tr>
+            <td>S2</td>
+            <td><input type="text" class="player-names" placeholder="player1/player2"></td>
+            <td><input type="text" class="set1-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set2-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set3-scores" placeholder="0/0"></td>
           </tr>
           <tr>
-            <td><input type="text" class="player-name" placeholder="Player 2"></td>
-            <td><input type="number" class="team2-set1" value="0"></td>
-            <td><input type="number" class="team2-set2" value="0"></td>
-            <td><input type="number" class="team2-set3" value="0"></td>
+            <td>S3</td>
+            <td><input type="text" class="player-names" placeholder="player1/player2"></td>
+            <td><input type="text" class="set1-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set2-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set3-scores" placeholder="0/0"></td>
           </tr>
           <tr>
-            <td rowspan="2">S2</td>
-            <td><input type="text" class="player-name" placeholder="Player 1"></td>
-            <td><input type="number" class="team1-set1" value="0"></td>
-            <td><input type="number" class="team1-set2" value="0"></td>
-            <td><input type="number" class="team1-set3" value="0"></td>
+            <td>S4</td>
+            <td><input type="text" class="player-names" placeholder="player1/player2"></td>
+            <td><input type="text" class="set1-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set2-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set3-scores" placeholder="0/0"></td>
           </tr>
           <tr>
-            <td><input type="text" class="player-name" placeholder="Player 2"></td>
-            <td><input type="number" class="team2-set1" value="0"></td>
-            <td><input type="number" class="team2-set2" value="0"></td>
-            <td><input type="number" class="team2-set3" value="0"></td>
+            <td>D1</td>
+            <td><input type="text" class="player-names" placeholder="player1/player2"></td>
+            <td><input type="text" class="set1-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set2-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set3-scores" placeholder="0/0"></td>
           </tr>
           <tr>
-            <td rowspan="2">S3</td>
-            <td><input type="text" class="player-name" placeholder="Player 1"></td>
-            <td><input type="number" class="team1-set1" value="0"></td>
-            <td><input type="number" class="team1-set2" value="0"></td>
-            <td><input type="number" class="team1-set3" value="0"></td>
+            <td>D2</td>
+            <td><input type="text" class="player-names" placeholder="player1/player2"></td>
+            <td><input type="text" class="set1-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set2-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set3-scores" placeholder="0/0"></td>
           </tr>
           <tr>
-            <td><input type="text" class="player-name" placeholder="Player 2"></td>
-            <td><input type="number" class="team2-set1" value="0"></td>
-            <td><input type="number" class="team2-set2" value="0"></td>
-            <td><input type="number" class="team2-set3" value="0"></td>
-          </tr>
-          <!-- Doubles -->
-          <tr>
-            <td rowspan="2">D1</td>
-            <td><input type="text" class="player-name" placeholder="Player 1"></td>
-            <td><input type="number" class="team1-set1" value="0"></td>
-            <td><input type="number" class="team1-set2" value="0"></td>
-            <td><input type="number" class="team1-set3" value="0"></td>
+            <td>D3</td>
+            <td><input type="text" class="player-names" placeholder="player1/player2"></td>
+            <td><input type="text" class="set1-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set2-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set3-scores" placeholder="0/0"></td>
           </tr>
           <tr>
-            <td><input type="text" class="player-name" placeholder="Player 2"></td>
-            <td><input type="number" class="team2-set1" value="0"></td>
-            <td><input type="number" class="team2-set2" value="0"></td>
-            <td><input type="number" class="team2-set3" value="0"></td>
-          </tr>
-          <tr>
-            <td rowspan="2">D2</td>
-            <td><input type="text" class="player-name" placeholder="Player 1"></td>
-            <td><input type="number" class="team1-set1" value="0"></td>
-            <td><input type="number" class="team1-set2" value="0"></td>
-            <td><input type="number" class="team1-set3" value="0"></td>
-          </tr>
-          <tr>
-            <td><input type="text" class="player-name" placeholder="Player 2"></td>
-            <td><input type="number" class="team2-set1" value="0"></td>
-            <td><input type="number" class="team2-set2" value="0"></td>
-            <td><input type="number" class="team2-set3" value="0"></td>
-          </tr>
-          <tr>
-            <td rowspan="2">D3</td>
-            <td><input type="text" class="player-name" placeholder="Player 1"></td>
-            <td><input type="number" class="team1-set1" value="0"></td>
-            <td><input type="number" class="team1-set2" value="0"></td>
-            <td><input type="number" class="team1-set3" value="0"></td>
-          </tr>
-          <tr>
-            <td><input type="text" class="player-name" placeholder="Player 2"></td>
-            <td><input type="number" class="team2-set1" value="0"></td>
-            <td><input type="number" class="team2-set2" value="0"></td>
-            <td><input type="number" class="team2-set3" value="0"></td>
-          </tr>
-          <tr>
-            <td rowspan="2">D4</td>
-            <td><input type="text" class="player-name" placeholder="Player 1"></td>
-            <td><input type="number" class="team1-set1" value="0"></td>
-            <td><input type="number" class="team1-set2" value="0"></td>
-            <td><input type="number" class="team1-set3" value="0"></td>
-          </tr>
-          <tr>
-            <td><input type="text" class="player-name" placeholder="Player 2"></td>
-            <td><input type="number" class="team2-set1" value="0"></td>
-            <td><input type="number" class="team2-set2" value="0"></td>
-            <td><input type="number" class="team2-set3" value="0"></td>
+            <td>D4</td>
+            <td><input type="text" class="player-names" placeholder="player1/player2"></td>
+            <td><input type="text" class="set1-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set2-scores" placeholder="0/0"></td>
+            <td><input type="text" class="set3-scores" placeholder="0/0"></td>
           </tr>
         </tbody>
       </table>
@@ -142,10 +116,35 @@
       <p id="lineWins"></p>
       <p id="setWins"></p>
       <p id="gameWins"></p>
+      <p id="matchWinner"></p>
+      <p id="validationErrors" class="error-message"></p>
     </div>
   </div>
 
   <script>
+    function validateScores(scores, inputElement) {
+      const [team1Score, team2Score] = scores.split('/').map(score => (score === "" ? 0 : Number(score)));
+
+      // Ensure scores are whole numbers and within the range
+      if (
+        isNaN(team1Score) || isNaN(team2Score) ||
+        team1Score < 0 || team2Score < 0 ||
+        team1Score > 4 || team2Score > 4
+      ) {
+        inputElement.classList.add("error");
+        return "Scores must be whole numbers between 0 and 4.";
+      }
+
+      // Ensure both scores cannot be 4 simultaneously
+      if (team1Score === 4 && team2Score === 4) {
+        inputElement.classList.add("error");
+        return "Both scores cannot be 4. One must be 3 or less.";
+      }
+
+      inputElement.classList.remove("error");
+      return null; // No validation errors
+    }
+
     function calculateResults() {
       const team1Name = document.getElementById('team1Name').value || 'Team 1';
       const team2Name = document.getElementById('team2Name').value || 'Team 2';
@@ -155,29 +154,42 @@
       let team1SetsWon = 0, team2SetsWon = 0;
       let team1GamesWon = 0, team2GamesWon = 0;
 
-      for (let i = 0; i < rows.length; i += 2) {
-        const team1SetScores = [
-          parseInt(rows[i].querySelector('.team1-set1').value),
-          parseInt(rows[i].querySelector('.team1-set2').value),
-          parseInt(rows[i].querySelector('.team1-set3').value)
-        ];
-        const team2SetScores = [
-          parseInt(rows[i + 1].querySelector('.team2-set1').value),
-          parseInt(rows[i + 1].querySelector('.team2-set2').value),
-          parseInt(rows[i + 1].querySelector('.team2-set3').value)
-        ];
+      let validationErrors = [];
+
+      rows.forEach(row => {
+        const set1Input = row.querySelector('.set1-scores');
+        const set2Input = row.querySelector('.set2-scores');
+        const set3Input = row.querySelector('.set3-scores');
+
+        const set1Scores = set1Input.value || "0/0";
+        const set2Scores = set2Input.value || "0/0";
+        const set3Scores = set3Input.value || "0/0";
+
+        // Validate Set 1 and Set 2 scores
+        const set1Error = validateScores(set1Scores, set1Input);
+        const set2Error = validateScores(set2Scores, set2Input);
+
+        if (set1Error) validationErrors.push(`Line ${row.querySelector('td').textContent} Set 1: ${set1Error}`);
+        if (set2Error) validationErrors.push(`Line ${row.querySelector('td').textContent} Set 2: ${set2Error}`);
+
+        const set1 = set1Scores.split('/').map(score => (score === "" ? 0 : Number(score)));
+        const set2 = set2Scores.split('/').map(score => (score === "" ? 0 : Number(score)));
+        const set3 = set3Scores.split('/').map(score => (score === "" ? 0 : Number(score)));
+
+        const team1SetScores = [set1[0], set2[0], set3[0]];
+        const team2SetScores = [set1[1], set2[1], set3[1]];
 
         let team1Sets = 0, team2Sets = 0;
 
-        for (let j = 0; j < 3; j++) {
-          if (team1SetScores[j] > team2SetScores[j]) {
+        for (let i = 0; i < 3; i++) {
+          if (team1SetScores[i] > team2SetScores[i]) {
             team1Sets++;
-            team1GamesWon += team1SetScores[j];
-            team2GamesWon += team2SetScores[j];
-          } else if (team2SetScores[j] > team1SetScores[j]) {
+            team1GamesWon += team1SetScores[i];
+            team2GamesWon += team2SetScores[i];
+          } else if (team2SetScores[i] > team1SetScores[i]) {
             team2Sets++;
-            team1GamesWon += team1SetScores[j];
-            team2GamesWon += team2SetScores[j];
+            team1GamesWon += team1SetScores[i];
+            team2GamesWon += team2SetScores[i];
           }
         }
 
@@ -189,11 +201,47 @@
         } else if (team2Sets > team1Sets) {
           team2LinesWon++;
         }
+      });
+
+      // Display validation errors if any
+      const validationErrorsElement = document.getElementById('validationErrors');
+      if (validationErrors.length > 0) {
+        validationErrorsElement.textContent = validationErrors.join('\n');
+        return;
+      } else {
+        validationErrorsElement.textContent = '';
       }
 
       document.getElementById('lineWins').textContent = `Lines Won: ${team1Name} - ${team1LinesWon}, ${team2Name} - ${team2LinesWon}`;
       document.getElementById('setWins').textContent = `Sets Won: ${team1Name} - ${team1SetsWon}, ${team2Name} - ${team2SetsWon}`;
       document.getElementById('gameWins').textContent = `Games Won: ${team1Name} - ${team1GamesWon}, ${team2Name} - ${team2GamesWon}`;
+
+      // Determine Match Day Winner
+      let matchWinner = '';
+      if (team1LinesWon > team2LinesWon) {
+        matchWinner = team1Name;
+      } else if (team2LinesWon > team1LinesWon) {
+        matchWinner = team2Name;
+      } else {
+        // Lines are tied, check sets
+        if (team1SetsWon > team2SetsWon) {
+          matchWinner = team1Name;
+        } else if (team2SetsWon > team1SetsWon) {
+          matchWinner = team2Name;
+        } else {
+          // Sets are tied, check games
+          if (team1GamesWon > team2GamesWon) {
+            matchWinner = team1Name;
+          } else if (team2GamesWon > team1GamesWon) {
+            matchWinner = team2Name;
+          } else {
+            // Games are also tied
+            matchWinner = "Super Tie Breaker";
+          }
+        }
+      }
+
+      document.getElementById('matchWinner').textContent = `Match Day Winner: ${matchWinner}`;
     }
   </script>
 </body>
