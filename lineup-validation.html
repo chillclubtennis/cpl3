@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Validate My Lineup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f6f8fa;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #375a7f;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 90%;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .error-message {
+      color: red;
+      font-weight: bold;
+      margin-bottom: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Validate My Lineup</h1>
+
+    <!-- Team Name Input -->
+    <div style="margin-bottom: 20px;">
+      <label for="teamName" style="font-weight: bold;">Team Name:</label>
+      <input type="text" id="teamName" placeholder="Enter Team Name" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+    </div>
+
+    <!-- Error message container -->
+    <div id="error-message" class="error-message"></div>
+
+    <h2>First Half</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Line Type</th>
+          <th>Player</th>
+          <th>Reverse</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>S1</td>
+          <td><input type="text" id="s1" placeholder="Enter player for S1"></td>
+          <td><input type="checkbox" id="s1-reverse" onclick="toggleReverse('s1', 's1r')"></td>
+        </tr>
+        <tr>
+          <td>S2</td>
+          <td><input type="text" id="s2" placeholder="Enter player for S2"></td>
+          <td><input type="checkbox" id="s2-reverse" onclick="toggleReverse('s2', 's2r')"></td>
+        </tr>
+        <tr>
+          <td>D1</td>
+          <td><input type="text" id="d1" placeholder="Enter players for D1 (e.g., Player1/Player2)"></td>
+          <td><input type="checkbox" id="d1-reverse" onclick="toggleReverse('d1', 'd1r')"></td>
+        </tr>
+        <tr>
+          <td>D2</td>
+          <td><input type="text" id="d2" placeholder="Enter players for D2 (e.g., Player1/Player2)"></td>
+          <td><input type="checkbox" id="d2-reverse" onclick="toggleReverse('d2', 'd2r')"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Second Half</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Line Type</th>
+          <th>Player</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>S1R</td>
+          <td><input type="text" id="s1r" placeholder="Enter player for S1R"></td>
+        </tr>
+        <tr>
+          <td>S2R</td>
+          <td><input type="text" id="s2r" placeholder="Enter player for S2R"></td>
+        </tr>
+        <tr>
+          <td>D1R</td>
+          <td><input type="text" id="d1r" placeholder="Enter players for D1R (e.g., Player1/Player2)"></td>
+        </tr>
+        <tr>
+          <td>D2R</td>
+          <td><input type="text" id="d2r" placeholder="Enter players for D2R (e.g., Player1/Player2)"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="display: flex; gap: 10px; margin-top: 20px;">
+      <button type="button" onclick="validateLineup()" style="padding: 8px 16px;">Validate Lineup</button>
+      <button type="button" onclick="printLineup()" style="padding: 8px 16px;">Print Lineup</button>
+    </div>
+
+    <div id="print-container" style="margin-top: 20px; display: none;">
+      <textarea id="lineup-output" rows="10" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" readonly></textarea>
+      <button type="button" onclick="copyToClipboard()" style="margin-top: 10px; padding: 8px 16px;">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <script>
+    function validateLineup() {
+      const singlesPlayers = new Set();
+      const doublesPlayers = new Set();
+      const errors = [];
+
+      // Collect all input fields
+      const inputs = document.querySelectorAll("input[type='text']");
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          errors.push(`Field "${input.id}" is mandatory.`);
+        }
+      });
+
+      // Collect singles players
+      const s1 = document.getElementById("s1").value.trim();
+      const s2 = document.getElementById("s2").value.trim();
+      const s1r = document.getElementById("s1r").value.trim();
+      const s2r = document.getElementById("s2r").value.trim();
+      if (s1) singlesPlayers.add(s1);
+      if (s2) singlesPlayers.add(s2);
+      if (s1r) singlesPlayers.add(s1r);
+      if (s2r) singlesPlayers.add(s2r);
+
+      // Collect doubles players
+      const d1 = document.getElementById("d1").value.trim().split("/");
+      const d2 = document.getElementById("d2").value.trim().split("/");
+      const d1r = document.getElementById("d1r").value.trim().split("/");
+      const d2r = document.getElementById("d2r").value.trim().split("/");
+      d1.forEach(player => player && doublesPlayers.add(player.trim()));
+      d2.forEach(player => player && doublesPlayers.add(player.trim()));
+      d1r.forEach(player => player && doublesPlayers.add(player.trim()));
+      d2r.forEach(player => player && doublesPlayers.add(player.trim()));
+
+      // Check for overlap between singles and doubles players
+      singlesPlayers.forEach(player => {
+        if (doublesPlayers.has(player)) {
+          errors.push(`Player "${player}" cannot play both singles and doubles.`);
+        }
+      });
+
+      // Validate pairing consistency
+      const validatePairing = (pair1, pair2, line) => {
+        if (pair1.length === 2 && pair2.length === 2) {
+          const [player1A, player1B] = pair1;
+          const [player2A, player2B] = pair2;
+
+          if (
+            !(
+              (player1A === player2A && player1B === player2B) ||
+              (player1A === player2B && player1B === player2A)
+            )
+          ) {
+            errors.push(
+              `Split/Repair not allowed in ${line}: "${player1A}/${player1B}" does not match "${player2A}/${player2B}".`
+            );
+          }
+        }
+      };
+
+      validatePairing(d1, d1r, "D1/D1R");
+      validatePairing(d2, d2r, "D2/D2R");
+
+      // Display validation results
+      const errorMessageElement = document.getElementById("error-message");
+      if (errors.length > 0) {
+        errorMessageElement.style.display = "block";
+        errorMessageElement.textContent = errors.join("\n");
+      } else {
+        errorMessageElement.style.display = "none";
+        alert("Lineup is valid!");
+      }
+    }
+
+    function toggleReverse(firstHalfId, secondHalfId) {
+      const firstHalfInput = document.getElementById(firstHalfId);
+      const secondHalfInput = document.getElementById(secondHalfId);
+      const reverseCheckbox = document.getElementById(`${firstHalfId}-reverse`);
+
+      if (reverseCheckbox.checked) {
+        secondHalfInput.value = firstHalfInput.value;
+        secondHalfInput.disabled = true;
+      } else {
+        secondHalfInput.value = '';
+        secondHalfInput.disabled = false;
+      }
+    }
+
+    function printLineup() {
+      const teamName = document.getElementById("teamName").value.trim() || "Team";
+      const lines = [
+        { id: "s1", label: "S1" },
+        { id: "s2", label: "S2" },
+        { id: "d1", label: "D1" },
+        { id: "d2", label: "D2" },
+        { id: "s1r", label: "S1R" },
+        { id: "s2r", label: "S2R" },
+        { id: "d1r", label: "D1R" },
+        { id: "d2r", label: "D2R" },
+      ];
+
+      let output = `Lineup for ${teamName}:\n`;
+      lines.forEach(line => {
+        const value = document.getElementById(line.id).value.trim();
+        output += `${line.label}: ${value || "N/A"}\n`;
+      });
+
+      const outputTextarea = document.getElementById("lineup-output");
+      outputTextarea.value = output;
+
+      const printContainer = document.getElementById("print-container");
+      printContainer.style.display = "block";
+    }
+
+    function copyToClipboard() {
+      const outputTextarea = document.getElementById("lineup-output");
+      outputTextarea.select();
+      document.execCommand("copy");
+      alert("Lineup copied to clipboard!");
+    }
+  </script>
+</body>
+</html>
