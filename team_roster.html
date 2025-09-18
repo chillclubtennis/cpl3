@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chill Premier League 3 - Team Roster</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+}
+        
+        .container {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+        
+        .header {
+            background: linear-gradient(45deg, #ff6b35, #f7931e, #ff6b35);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🎾';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            left: -50px;
+            animation: bounce 3s infinite;
+        }
+        
+        .header::after {
+            content: '🎾';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            bottom: -40px;
+            right: -40px;
+            animation: bounce 3s infinite 1.5s;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .tournament-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5em;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+        
+        .team-card {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 15px;
+    padding: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+        
+        .team-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border-color: #ff6b35;
+        }
+        
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        
+        .team-card:hover::before {
+            opacity: 1;
+            animation: shine 0.5s ease-in-out;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .team-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .team-name::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            margin: 8px auto;
+            border-radius: 2px;
+        }
+        
+        .captain {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .captain::before {
+            content: '👑 ';
+            font-size: 1.2em;
+        }
+        
+        .players {
+            list-style: none;
+        }
+        
+        .players li {
+    padding: 2px 0;
+    color: #34495e;
+    font-weight: 400;
+    font-size: 0.98em;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+        
+        .players li:hover {
+            color: #ff6b35;
+            font-weight: 500;
+        }
+        
+        
+.emerging-player {
+    color: #2e7d32 !important;
+    font-weight: 700 !important;
+    padding: 2px 0;
+    margin: 2px 0;
+}
+        
+        .emerging-player:hover {
+    color: #1b5e20 !important;
+    font-weight: 700 !important;}
+        
+        .tennis-icon {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2em;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+        
+        @media (max-width: 1200px) {
+            .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+            .tournament-title { font-size: 2.5em; }
+        }
+        
+        @media (max-width: 768px) {
+            .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+            .tournament-title { font-size: 2em; }
+            .container {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+        }
+    
+
+@media (max-width: 1200px) {
+    .tournament-title { font-size: 2.6em; }
+}
+@media (max-width: 768px) {
+    .tournament-title { font-size: 2.1em; }
+    .container { border-radius: 12px; }
+    .team-name { font-size: 1.2em; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1 class="tournament-title">Chill Premier League 3.0</h1>
+<p class="subtitle">🏆 Official Team Roster 🏆</p>
+</div>
+<div class="teams-grid">
+<!-- Team AA -->
+<div class="team-card">
+<div class="tennis-icon">🚀</div>
+<h2 class="team-name">Ace Avengers (AA)</h2>
+<div class="captain">Sreekanth Bobbala (C)</div>
+<ul class="players">
+<li>Bhavesh Khatri</li>
+<li class="emerging-player">Easwar Karivaradasamy (EP)</li>
+<li class="emerging-player">Krishna Korlepara (EP)</li>
+<li>Mohan Mallampaty</li>
+<li class="emerging-player">Prahlad Dureddy (EP)</li>
+<li class="emerging-player">Prasad Challa (EP)</li>
+<li class="emerging-player">Raghu Poreddy (EP)</li>
+<li class="emerging-player">Sandeep Kakarla (EP)</li>
+<li>Sashi Ramannagari</li>
+<li class="emerging-player">Satya Maddipati (EP)</li>
+<li class="emerging-player">Subhash Kapu (EP)</li>
+<li>Uday Punati</li>
+<li class="emerging-player">Vinod Punati (EP)</li>
+</ul>
+</div>
+<!-- Team CCT -->
+<div class="team-card">
+<div class="tennis-icon">⚡</div>
+<h2 class="team-name">Chill Cheetahs (CCT)</h2>
+<div class="captain">G K N Ramella (C) (EP)</div>
+<ul class="players">
+<li>Chandra Chintala</li>
+<li>Chinna Cheemal</li>
+<li>Gopikrishna Madishetti</li>
+<li class="emerging-player">Jagadesh Rachakonda (EP)</li>
+<li>Jana Srini</li>
+<li>Jayesh Barai</li>
+<li class="emerging-player">Naga Suresh Suggala (EP)</li>
+<li class="emerging-player">Prakash Thatavarthy (EP)</li>
+<li>Ram Movva</li>
+<li class="emerging-player">Ramana Emani (EP)</li>
+<li>Sb M</li>
+<li>Sreenivas Kundam</li>
+<li>Srinivas Nall</li>
+<li>Srinivasa Kotaru</li>
+<li>Suresh Katla</li>
+</ul>
+</div>
+<!-- Team COCO -->
+<div class="team-card">
+<div class="tennis-icon">🏰</div>
+<h2 class="team-name">Court Conquerors (COCO)</h2>
+<div class="captain">Manish Jangid (C)</div>
+<ul class="players">
+<li>Anand Mehta</li>
+<li class="emerging-player">Biju Koshy (EP)</li>
+<li>Jitender Kumar</li>
+<li class="emerging-player">Jitin Jaitly (EP)</li>
+<li>Mohammad Azim</li>
+<li>Mohammed Javed Shaik</li>
+<li>Nishit Ranjan</li>
+<li>Phani Kumar Upadhyayula</li>
+<li class="emerging-player">Prashant Janmatti (EP)</li>
+<li>Ritesh Kumar</li>
+<li>Sandeep Velugoti</li>
+<li class="emerging-player">Shailendra Patidar (EP)</li>
+<li>Sudhakara Nallapati</li>
+<li>Usman Jehangiri</li>
+<li class="emerging-player">Venkat Thimmisetty (EP)</li>
+<li>Yogesh Dhadge</li>
+</ul>
+</div>
+<!-- Team CSK -->
+<div class="team-card">
+<div class="tennis-icon">🎾</div>
+<h2 class="team-name">Chill Super Kings (CSK)</h2>
+<div class="captain">Anand Krishnamurthy (C)</div>
+<ul class="players">
+<li>Boopesh Natarajan</li>
+<li class="emerging-player">Damodhara Palavali (EP)</li>
+<li>Hariprashanth Ganapathy</li>
+<li>Mani Vadivel</li>
+<li class="emerging-player">Ninad Mahajan (EP)</li>
+<li>Premkumar Balakrishnan</li>
+<li>Rajib Sarkar</li>
+<li class="emerging-player">Ravikumar Sengodan (EP)</li>
+<li class="emerging-player">Sai Divvala (EP)</li>
+<li class="emerging-player">Sankara Lakshmanan (EP)</li>
+<li class="emerging-player">Senthil Kumar Radhakrishnan (EP)</li>
+<li>Shailendra Madhavapeddi</li>
+<li class="emerging-player">Shivashankar Suryanarayanan (EP)</li>
+<li>Vinoth Duraisamy</li>
+</ul>
+</div>
+<!-- Team CT -->
+<div class="team-card">
+<div class="tennis-icon">⚔️</div>
+<h2 class="team-name">Chill Titans (CT)</h2>
+<div class="captain">Satish Reddy Orugunta (C)</div>
+<ul class="players">
+<li class="emerging-player">Ali Mohamed (EP)</li>
+<li class="emerging-player">Chandu M (EP)</li>
+<li>Durga Kalavakolanu</li>
+<li class="emerging-player">Janaki Ram Kantheti (EP)</li>
+<li>Kalam Shaik</li>
+<li>Kalyan Kalidindi</li>
+<li>Koteswararao Chakrala</li>
+<li>Narayan Prasad</li>
+<li>Prashanth Gourineni</li>
+<li class="emerging-player">Rafeq Syed (EP)</li>
+<li>Rakesh Chandoori</li>
+<li>Ravi Bhupathi</li>
+<li class="emerging-player">Ravi Mothukuri (EP)</li>
+<li>Srinath Elitem</li>
+<li>Vamsi Atluri</li>
+<li>Vijay Moganti</li>
+</ul>
+</div>
+<!-- Team DD -->
+<div class="team-card">
+<div class="tennis-icon">&nbsp;😈</div>
+<h2 class="team-name">Deuce Devils (DD)</h2>
+<div class="captain">Hari Mothukuri (C)</div>
+<ul class="players">
+<li>Amit Gundewar</li>
+<li>Anil Chebolu</li>
+<li>Chandrakant Dharme</li>
+<li>Deepak Lalwani</li>
+<li>Harish Ganguri</li>
+<li class="emerging-player">Jayasankar Polu (EP)</li>
+<li>Kalyan Chinta</li>
+<li class="emerging-player">Kranthi Palem (EP)</li>
+<li class="emerging-player">Mohamed Noufal (EP)</li>
+<li>Niranjan Tumu</li>
+<li class="emerging-player">Raj Shah (EP)</li>
+<li>Ratnesh Sinha</li>
+<li class="emerging-player">Revan M (EP)</li>
+<li>Satish K</li>
+<li>Shiva Mamidisetty</li>
+<li class="emerging-player">Somesh Katukuri (EP)</li>
+<li>Uday Katikala</li>
+<li>Uma Vommi</li>
+</ul>
+</div>
+<!-- Team GSG -->
+<div class="team-card">
+<div class="tennis-icon">💥</div>
+<h2 class="team-name">Grand Slam Gladiators (GSG)</h2>
+<div class="captain">Brian Chong (C)</div>
+<ul class="players">
+<li class="emerging-player">Abhishek Mohnot (EP)</li>
+<li class="emerging-player">Agrim Gupta (EP)</li>
+<li>Girish Ledala</li>
+<li class="emerging-player">Kalyan Kosuri (EP)</li>
+<li>Koushik Venkatasubramanian</li>
+<li class="emerging-player">Luke Kosman (EP)</li>
+<li class="emerging-player">Manash Chakravarty (EP)</li>
+<li class="emerging-player">Manny Tammana (EP)</li>
+<li class="emerging-player">Mohan Kumar (EP)</li>
+<li>Pratik Pitroda</li>
+<li>Raja Racharla</li>
+<li>Rajesh Nautiyal</li>
+<li>Ramachandran Viswanathan</li>
+<li>Saket Raizada</li>
+<li>Santhosh Dandavathi</li>
+<li class="emerging-player">Shafi Mohammad (EP)</li>
+<li>Shiva Kumar</li>
+<li class="emerging-player">Shiva Rama K Gundimeda (EP)</li>
+<li>Sravan Vemulapalli</li>
+<li class="emerging-player">Sree Jaganathan (EP)</li>
+<li>Suman Madavarapu</li>
+<li class="emerging-player">Vamshimohan Reddy Pailla (EP)</li>
+<li>Vijay Gate</li>
+<li class="emerging-player">Waqas Majeed (EP)</li>
+</ul>
+</div>
+<!-- Team POSH -->
+<div class="team-card">
+<div class="tennis-icon">💎</div>
+<h2 class="team-name">Prosper Open Smash Hitters (POSH)</h2>
+<div class="captain">Vinod Aripaka (C)</div>
+<ul class="players">
+<li>Anil Kunda</li>
+<li>Dinesh Timmareddy</li>
+<li>Dinkar Bhardwaj</li>
+<li class="emerging-player">Kanakaraj Periasamy (EP)</li>
+<li>Kasi Vadali</li>
+<li>Krishna Vennapusa</li>
+<li class="emerging-player">Lloyd Prasana Kumar (EP)</li>
+<li class="emerging-player">Malla Reddy Cheerke (EP)</li>
+<li class="emerging-player">Naseer Mohd (EP)</li>
+<li class="emerging-player">Pravin Shingade (EP)</li>
+<li>Rajasekhar Chintha</li>
+<li>Rajasekhar Karru</li>
+<li>Sudarshan Paliwal</li>
+<li class="emerging-player">Venky Dh (EP)</li>
+<li>Vinod Marakoosham</li>
+</ul>
+</div>
+<!-- Team RR -->
+<div class="team-card">
+<div class="tennis-icon">🏴‍☠️</div>
+<h2 class="team-name">Rally Raiders (RR)</h2>
+<div class="captain">Sairam Subramanyam (C)</div>
+<ul class="players">
+<li>Alex Michael</li>
+<li>Anbu Muthusamy</li>
+<li class="emerging-player">Anshul Goyal (EP)</li>
+<li class="emerging-player">Bryan Blocker (EP)</li>
+<li>Devanand Gangireddy</li>
+<li>Harsha Beeram</li>
+<li>Kumaraguru Radhakrishnan</li>
+<li>Maruthi Koiloth</li>
+<li class="emerging-player">Naveenkumar Mohanram (EP)</li>
+<li>Navin Ramakrishnan</li>
+<li>Raghavaiah Vikram</li>
+<li class="emerging-player">Raja R (EP)</li>
+<li class="emerging-player">Rakesh Ruhil (EP)</li>
+<li>Sreedhar Boyineni</li>
+<li>Sundar Mehalingam</li>
+</ul>
+</div>
+<!-- Team VV -->
+<div class="team-card">
+<div class="tennis-icon">🐍</div>
+<h2 class="team-name">Volley Vipers (VV)</h2>
+<div class="captain">Kailas Magi (C)</div>
+<ul class="players">
+<li class="emerging-player">Akshay Dhargalkar (EP)</li>
+<li class="emerging-player">Amol Patwardhan (EP)</li>
+<li>Angel Serrano</li>
+<li>Daniel Zambrana</li>
+<li class="emerging-player">Kirtikumar Kalankar (EP)</li>
+<li>Kondal Ajjarapu</li>
+<li>Krishna Pamarthi</li>
+<li>Mahendra Vengurlekar</li>
+<li>Mathivanan Ramalingam</li>
+<li class="emerging-player">Mayur Gupta (EP)</li>
+<li>Rajasekhar Mangalampally</li>
+<li>Rohit Randive</li>
+<li>Sagar Bathe</li>
+<li class="emerging-player">Samir Junnarkar (EP)</li>
+<li class="emerging-player">Santosh Kulkarni (EP)</li>
+<li class="emerging-player">Tushar Tipatre (EP)</li>
+<li>Veeresh Kurni</li>
+<li>Vikas Thorat</li>
+</ul>
+</div>
+</div>
+<div class="footer">
+            🎾 Let the Games Begin! May the Best Team Win! 🏆
+        </div>
+</div>
+</body>
+</html>
